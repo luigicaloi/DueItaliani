@@ -1,0 +1,100 @@
+/* ===== Design tokens ===== */
+:root {
+  --green-primary: #58CC02;
+  --green-dark:    #46A302;
+  --green-light:   #D7F0B6;
+  --red-primary:   #FF4B4B;
+  --red-dark:      #CC0000;
+  --red-light:     #FFE0E0;
+  --yellow:        #FFC800;
+  --blue-light:    #DDF4FF;
+  --text-dark:     #3C3C3C;
+  --text-medium:   #777777;
+  --text-light:    #AFAFAF;
+  --bg:            #F9F9F9;
+  --white:         #FFFFFF;
+  --border:        #E5E5E5;
+
+  --radius-card:   20px;
+  --radius-btn:    16px;
+  --radius-sm:     10px;
+
+  --shadow-card:   0 6px 0 rgba(0,0,0,0.08);
+  --shadow-btn:    0 4px 0 rgba(0,0,0,0.15);
+
+  --font: 'Nunito', 'Nunito Sans', system-ui, sans-serif;
+  --transition: 0.15s ease;
+}
+
+/* ===== Reset & base ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ===== Layout helpers ===== */
+.page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px 40px;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 640px;
+}
+
+/* ===== Logo / wordmark ===== */
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.logo-text {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--green-primary);
+  letter-spacing: -1px;
+  /* Duolingo-style: bottom shadow gives a 3-D "stamp" feel */
+  text-shadow: 0 4px 0 var(--green-dark);
+  line-height: 1;
+}
+
+.logo-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-medium);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 44px;
+  letter-spacing: 0.2px;
+}

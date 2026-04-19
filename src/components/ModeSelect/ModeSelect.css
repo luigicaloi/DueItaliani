@@ -1,0 +1,129 @@
+.mode-select {
+  padding-top: 32px;
+}
+
+.mode-select__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  width: 100%;
+  max-width: 640px;
+}
+
+.mode-select__back {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--text-medium);
+  line-height: 1;
+  border-radius: 8px;
+  transition: background var(--transition);
+}
+
+.mode-select__back:hover {
+  background: var(--border);
+}
+
+.mode-select__title {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--text-dark);
+}
+
+.mode-select__subtitle {
+  font-size: 0.9rem;
+  color: var(--text-medium);
+  font-weight: 600;
+}
+
+.mode-select__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 640px;
+}
+
+.mode-card {
+  background: var(--white);
+  border-radius: var(--radius-card);
+  border: 2.5px solid var(--border);
+  box-shadow: var(--shadow-card);
+  padding: 20px 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+  width: 100%;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  user-select: none;
+  font-family: var(--font);
+}
+
+.mode-card:hover {
+  border-color: var(--green-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 var(--green-dark);
+}
+
+.mode-card:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 var(--green-dark);
+}
+
+.mode-card__icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mode-card__body {
+  flex: 1;
+}
+
+.mode-card__name {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.mode-card__desc {
+  font-size: 0.85rem;
+  color: var(--text-medium);
+  font-weight: 600;
+}
+
+.mode-card__badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+.mode-card__badge--empty {
+  background: #f0f0f0;
+  color: var(--text-medium);
+}
+
+.mode-card__badge--count {
+  background: var(--green-light);
+  color: var(--green-dark);
+}
+
+.mode-card__arrow {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  flex-shrink: 0;
+}

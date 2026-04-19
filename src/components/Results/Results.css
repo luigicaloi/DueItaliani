@@ -1,0 +1,70 @@
+.results {
+  justify-content: center;
+  text-align: center;
+  gap: 32px;
+}
+
+.results__icon {
+  font-size: 5rem;
+  line-height: 1;
+}
+
+.results__title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--text-dark);
+}
+
+.results__subtitle {
+  font-size: 1rem;
+  color: var(--text-medium);
+  font-weight: 600;
+}
+
+.results__stats {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.results__stat {
+  background: var(--white);
+  border: 2.5px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 20px 28px;
+  min-width: 120px;
+}
+
+.results__stat-value {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--green-primary);
+}
+
+.results__stat--fail .results__stat-value {
+  color: var(--red-primary);
+}
+
+.results__stat-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+
+.results__hearts {
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+}
+
+.results__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
