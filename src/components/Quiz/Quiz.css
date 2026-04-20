@@ -126,6 +126,11 @@
   cursor: default;
 }
 
+.quiz__add-review--error {
+  border-color: var(--red-primary);
+  color: var(--red-primary);
+}
+
 .quiz__instruction {
   font-size: 1rem;
   font-weight: 700;

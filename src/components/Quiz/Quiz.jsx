@@ -27,12 +27,13 @@ export default function Quiz({ userId, mode, vocabulary, onFinish, onBack }) {
   } = useQuiz(userId, mode, vocabulary)
 
   const [addedWords, setAddedWords] = useState(new Set())
+  const [errorWords, setErrorWords] = useState(new Set())
 
   const handleAddToReview = useCallback(async (entry) => {
     const key = entry.italian
     if (addedWords.has(key)) return
     try {
-      await fetch('/api/add-review-word', {
+      const res = await fetch('/api/add-review-word', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -43,9 +44,23 @@ export default function Quiz({ userId, mode, vocabulary, onFinish, onBack }) {
           notes: entry.notes || '',
         }),
       })
-      setAddedWords(prev => new Set([...prev, key]))
+      if (res.ok || res.status === 409) {
+        setAddedWords(prev => new Set([...prev, key]))
+      } else {
+        setErrorWords(prev => new Set([...prev, key]))
+        setTimeout(() => setErrorWords(prev => {
+          const next = new Set(prev)
+          next.delete(key)
+          return next
+        }), 3000)
+      }
     } catch {
-      // silently fail — user can add manually
+      setErrorWords(prev => new Set([...prev, key]))
+      setTimeout(() => setErrorWords(prev => {
+        const next = new Set(prev)
+        next.delete(key)
+        return next
+      }), 3000)
     }
   }, [userId, addedWords])
 
@@ -92,11 +107,15 @@ export default function Quiz({ userId, mode, vocabulary, onFinish, onBack }) {
 
         {currentQuestion.sourceEntry && (
           <button
-            className={`quiz__add-review${addedWords.has(currentQuestion.sourceEntry.italian) ? ' quiz__add-review--added' : ''}`}
+            className={`quiz__add-review${addedWords.has(currentQuestion.sourceEntry.italian) ? ' quiz__add-review--added' : ''}${errorWords.has(currentQuestion.sourceEntry.italian) ? ' quiz__add-review--error' : ''}`}
             onClick={() => handleAddToReview(currentQuestion.sourceEntry)}
             disabled={addedWords.has(currentQuestion.sourceEntry.italian)}
           >
-            {addedWords.has(currentQuestion.sourceEntry.italian) ? '✓ Adicionada à revisão' : '+ Adicionar à revisão'}
+            {addedWords.has(currentQuestion.sourceEntry.italian)
+              ? '✓ Adicionada à revisão'
+              : errorWords.has(currentQuestion.sourceEntry.italian)
+              ? '✗ Erro — tente de novo'
+              : '+ Adicionar à revisão'}
           </button>
         )}
 
