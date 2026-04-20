@@ -98,6 +98,34 @@
   margin-top: 4px;
 }
 
+.quiz__add-review {
+  align-self: flex-start;
+  background: none;
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-family: var(--font);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-medium);
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+  margin-top: -8px;
+}
+
+.quiz__add-review:hover:not(:disabled) {
+  border-color: var(--green-primary);
+  color: var(--green-dark);
+  background: var(--green-light);
+}
+
+.quiz__add-review--added {
+  border-color: var(--green-primary);
+  color: var(--green-dark);
+  background: var(--green-light);
+  cursor: default;
+}
+
 .quiz__instruction {
   font-size: 1rem;
   font-weight: 700;

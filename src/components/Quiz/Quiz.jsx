@@ -1,3 +1,4 @@
+import { useState, useCallback } from 'react'
 import useQuiz from '../../hooks/useQuiz.js'
 import ProgressBar from './ProgressBar.jsx'
 import Hearts from './Hearts.jsx'
@@ -24,6 +25,29 @@ export default function Quiz({ userId, mode, vocabulary, onFinish, onBack }) {
     submitAnswer,
     advance,
   } = useQuiz(userId, mode, vocabulary)
+
+  const [addedWords, setAddedWords] = useState(new Set())
+
+  const handleAddToReview = useCallback(async (entry) => {
+    const key = entry.italian
+    if (addedWords.has(key)) return
+    try {
+      await fetch('/api/add-review-word', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId,
+          italian: entry.italian,
+          portuguese: entry.portuguese,
+          english: entry.english || '',
+          notes: entry.notes || '',
+        }),
+      })
+      setAddedWords(prev => new Set([...prev, key]))
+    } catch {
+      // silently fail — user can add manually
+    }
+  }, [userId, addedWords])
 
   if (finished && result) {
     onFinish(result)
@@ -65,6 +89,16 @@ export default function Quiz({ userId, mode, vocabulary, onFinish, onBack }) {
         <div className="quiz__prompt">
           {currentQuestion.prompt}
         </div>
+
+        {currentQuestion.sourceEntry && (
+          <button
+            className={`quiz__add-review${addedWords.has(currentQuestion.sourceEntry.italian) ? ' quiz__add-review--added' : ''}`}
+            onClick={() => handleAddToReview(currentQuestion.sourceEntry)}
+            disabled={addedWords.has(currentQuestion.sourceEntry.italian)}
+          >
+            {addedWords.has(currentQuestion.sourceEntry.italian) ? '✓ Aggiunta alla revisione' : '+ Aggiungi alla revisione'}
+          </button>
+        )}
 
         <div className="quiz__instruction">Seleziona la risposta corretta:</div>
 
