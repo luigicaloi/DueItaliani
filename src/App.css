@@ -85,8 +85,6 @@ body {
   font-weight: 900;
   color: var(--green-primary);
   letter-spacing: -1px;
-  /* Duolingo-style: bottom shadow gives a 3-D "stamp" feel */
-  text-shadow: 0 4px 0 var(--green-dark);
   line-height: 1;
 }
 
