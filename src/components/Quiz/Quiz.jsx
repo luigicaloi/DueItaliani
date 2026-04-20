@@ -96,7 +96,7 @@ export default function Quiz({ userId, mode, vocabulary, onFinish, onBack }) {
             onClick={() => handleAddToReview(currentQuestion.sourceEntry)}
             disabled={addedWords.has(currentQuestion.sourceEntry.italian)}
           >
-            {addedWords.has(currentQuestion.sourceEntry.italian) ? '✓ Aggiunta alla revisione' : '+ Aggiungi alla revisione'}
+            {addedWords.has(currentQuestion.sourceEntry.italian) ? '✓ Adicionada à revisão' : '+ Adicionar à revisão'}
           </button>
         )}
 
