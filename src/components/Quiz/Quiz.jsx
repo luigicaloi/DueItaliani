@@ -64,11 +64,6 @@ export default function Quiz({ userId, mode, vocabulary, onFinish, onBack }) {
 
         <div className="quiz__prompt">
           {currentQuestion.prompt}
-          {currentQuestion.sourceEntry?.english && (
-            <div className="quiz__prompt-sub">
-              ({currentQuestion.sourceEntry.english})
-            </div>
-          )}
         </div>
 
         <div className="quiz__instruction">Seleziona la risposta corretta:</div>
